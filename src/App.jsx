@@ -14,7 +14,7 @@ function App() {
         <Route path='/client' element={<Layout/>}>
           <Route index element={<Index/>} />
           <Route path='new' element={<NewClient/>} />
-          <Route path='edit/:id' element={<EditClient/>} />
+          <Route path='edit' element={<EditClient/>} />
         </Route>
       </Routes>
     </BrowserRouter>

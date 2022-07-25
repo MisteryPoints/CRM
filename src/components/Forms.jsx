@@ -1,20 +1,32 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
+import Alert from './Alert'
 
 const Forms = () => {
 
   const newClientSchema = Yup.object().shape({
-    name: Yup.string().required('El nombre del cliente es Obligatorio'),
-    business:'',
-    email:'',
-    tel:'',
-    notes:''
+    name: Yup.string().min(3, 'El nombre es muy corto').max(40, 'El nombre es muy largo').required('El nombre del cliente es Obligatorio'),
+    business: Yup.string().required('El nombre de la empresa es Obligatorio'),
+    email: Yup.string().email('El email adjunto no es valido').required('El email es Obligatorio'),
+    tel: Yup.number().integer('El número adjunto debe ser valido').positive('El número adjunto debe ser valido').typeError('El número adjunto debe ser valido')
   })
 
 
-  const handleSubmit = (values) => {
-      newClientSchema(values)
+  const handleSubmit = async (values) => {
+    try {
+      const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
+      const response = await fetch(url,{
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      const resultado = await response.json()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -35,29 +47,39 @@ const Forms = () => {
           validationSchema={newClientSchema}
         >
 
-          {({errors}) => {
-
+          {({errors, touched}) => {
             return  (
           <Form>
             <div className='mb-4'>
               <label htmlFor='name' className='text-gray-800'>Nombre:</label>
               <Field type='text' id='name' className='mt-2 block w-full p-3 bg-gray-50' placeholder='Nombre del Cliente' name='name'/>
-              <ErrorMessage name='name' className='bg-red-200 text-red-700 rounded-xl '/>
+              {errors.name && touched.name ? (
+                <Alert>{errors.name}</Alert>
+              ):null}
             </div>
             
             <div className='mb-4'>
               <label htmlFor='business' className='text-gray-800'>Empresa:</label>
               <Field type='text' id='business' className='mt-2 block w-full p-3 bg-gray-50' placeholder='Empresa del Cliente' name='business'/>
+              {errors.business && touched.business ? (
+                <Alert>{errors.business}</Alert>
+              ):null}
             </div>
 
             <div className='mb-4'>
               <label htmlFor='email' className='text-gray-800'>Email:</label>
               <Field type='email' id='email' className='mt-2 block w-full p-3 bg-gray-50' placeholder='Email del Cliente' name='email'/>
+              {errors.email && touched.email ? (
+                <Alert>{errors.email}</Alert>
+              ):null}
             </div>
 
             <div className='mb-4'>
               <label htmlFor='tel' className='text-gray-800'>Teléfono:</label>
               <Field type='tel' id='tel' className='mt-2 block w-full p-3 bg-gray-50' placeholder='Teléfono del Cliente' name='tel'/>
+              {errors.tel && touched.tel ? (
+                <Alert>{errors.tel}</Alert>
+              ):null}
             </div>
 
             <div className='mb-4'>
@@ -67,8 +89,8 @@ const Forms = () => {
 
             <input type="submit" value='Agregar Cliente' className='mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg cursor-pointer hover:bg-blue-900 rounded-lg' />
           </Form>
-          )}
-            }
+          )
+        }}
         </Formik>
     </div>
   )
