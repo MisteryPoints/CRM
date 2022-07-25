@@ -1,9 +1,12 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage} from 'formik'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import Alert from './Alert'
 
 const Forms = () => {
+
+  const navigate = useNavigate()
 
   const newClientSchema = Yup.object().shape({
     name: Yup.string().min(3, 'El nombre es muy corto').max(40, 'El nombre es muy largo').required('El nombre del cliente es Obligatorio'),
@@ -23,7 +26,8 @@ const Forms = () => {
           'Content-Type': 'application/json',
         }
       })
-      const resultado = await response.json()
+      const result = await response.json()
+      navigate('/client')
     } catch (error) {
       console.log(error)
     }
@@ -41,8 +45,9 @@ const Forms = () => {
             tel:'',
             notes:''
           }}
-          onSubmit={(values)  => {
-            handleSubmit(values)
+          onSubmit={async (values, {resetForm})  => {
+            await handleSubmit(values)
+            resetForm()
           }}
           validationSchema={newClientSchema}
         >
