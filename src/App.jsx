@@ -15,7 +15,7 @@ function App() {
         <Route path='/client' element={<Layout/>}>
           <Route index element={<Index/>} />
           <Route path='new' element={<NewClient/>} />
-          <Route path='edit' element={<EditClient/>} />
+          <Route path='edit/:id' element={<EditClient/>} />
           <Route path=':id' element={<CheckClient/>} />
         </Route>
       </Routes>
