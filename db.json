@@ -39,6 +39,22 @@
       "tel": "8097894563",
       "notes": "Puede mejorar.",
       "id": 5
+    },
+    {
+      "name": "Oscar Foster",
+      "business": "JAADMOA",
+      "email": "oscarfoster@gmail.com",
+      "tel": "8097798089",
+      "notes": "Gracias",
+      "id": 6
+    },
+    {
+      "name": "Kenia Bodre",
+      "business": "Abogados",
+      "email": "keniabodre@gmail.com",
+      "tel": "8097777777",
+      "notes": "Muchas bendiciones",
+      "id": 7
     }
   ]
 }

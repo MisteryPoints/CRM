@@ -18,7 +18,8 @@ const Forms = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
+      // const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
+      const url = 'http://localhost:3000/clients'
       const response = await fetch(url,{
         method: 'POST',
         body: JSON.stringify(values),
