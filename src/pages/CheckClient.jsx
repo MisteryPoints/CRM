@@ -13,8 +13,7 @@ const CheckClient = () => {
         setCharging(!charging)
         const getClient = async () => {
             try {
-                // const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${id}`
-                const url = `http://localhost:3000/clients/${id}`
+                const url = `${import.meta.env.VITE_API_URL}/${id}`
                 const response = await fetch(url)
                 const result = await response.json()
                 setClient(result)
@@ -28,7 +27,7 @@ const CheckClient = () => {
 
     return ( 
         <div>
-            {charging ? <Spinner/> : Object.keys(client).length !== 0 ?  (
+            {charging ? <Spinner/> : Object.keys(client).length > 0 ?  (
             <>
                 <h1 className='font-black text-4xl text-blue-900'>Ver Cliente: {client.name}</h1>
                 <p className='mt-3'>Información del cliente: </p>
@@ -61,7 +60,7 @@ const CheckClient = () => {
             </>
             ) : (
                 <h1 className='font-black text-4xl text-red-600'>No existe este cliente.</h1>
-                ) 
+            ) 
             }
             
         </div> 

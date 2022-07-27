@@ -14,8 +14,7 @@ const EditClient = () => {
       setCharging(true)
       const getClient = async () => {
           try {
-              // const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${id}`
-              const url = `http://localhost:3000/clients/${id}`
+              const url = `${import.meta.env.VITE_API_URL}/${id}`
               const response = await fetch(url)
               const result = await response.json()
               setClient(result)

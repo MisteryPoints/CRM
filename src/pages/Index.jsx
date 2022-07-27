@@ -11,8 +11,7 @@ const Index = () => {
     setCharging(!charging)
     const getClient = async () => {
       try {
-        // const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
-        const url = 'http://localhost:3000/clients'
+        const url = import.meta.env.VITE_API_URL
         const response = await fetch(url)
         const result = await response.json()
         setClients(result)
@@ -28,7 +27,7 @@ const Index = () => {
     const confirmed = confirm('¿Deseas eliminar este Cliente?')
     if (confirmed) {
       try {
-        const url = `http://localhost:3000/clients/${id}`
+        const url = `${import.meta.env.VITE_API_URL}/${id}`
         const response = await fetch(url, {
           method: 'DELETE'
         })

@@ -23,8 +23,7 @@ const Forms = ({client}) => {
       if (client.id) {
         //Editar Registro
 
-        // const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${client.id}`
-        const url = `http://localhost:3000/clients/${client.id}`
+        const url = `${import.meta.env.VITE_API_URL}/${client.id}`
         response = await fetch(url,{
           method: 'PUT',
           body: JSON.stringify(values),
@@ -34,9 +33,8 @@ const Forms = ({client}) => {
         })
       } else {
         //Nuevo Registro
-
-        // const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
-        const url = 'http://localhost:3000/clients'
+ 
+        const url = import.meta.env.VITE_API_URL
         response = await fetch(url,{
           method: 'POST',
           body: JSON.stringify(values),
