@@ -10,8 +10,8 @@ const Layout = () => {
       <div className='md:w-1/5 layout-bg px-5 py-10'>
         <h2 className='text-4xl font-black text-center text-white'>CRM - Clientes</h2>
         <nav className='mt-10'>
-          <Link to="/client" className={`${urlActual === '/client' ? 'text-blue-300' : 'text-white'}  text-2xl block mt-2 hover:text-blue-300`}>Clientes</Link>
-          <Link to="/client/new" className={`${urlActual === '/client/new' ? 'text-blue-300' : 'text-white'}  text-2xl block mt-2 hover:text-blue-300`}>Nuevo Cliente</Link>
+          <Link to="/" className={`${urlActual === '/' ? 'text-blue-300' : 'text-white'}  text-2xl block mt-2 hover:text-blue-300`}>Clientes</Link>
+          <Link to="/new" className={`${urlActual === '/new' ? 'text-blue-300' : 'text-white'}  text-2xl block mt-2 hover:text-blue-300`}>Nuevo Cliente</Link>
         </nav>
       </div>
 
