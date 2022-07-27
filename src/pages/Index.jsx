@@ -11,8 +11,8 @@ const Index = () => {
     setCharging(!charging)
     const getClient = async () => {
       try {
-        const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
-        // const url = 'http://localhost:3000/clients'
+        // const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
+        const url = 'http://localhost:3000/clients'
         const response = await fetch(url)
         const result = await response.json()
         setClients(result)
@@ -23,6 +23,26 @@ const Index = () => {
     }
     getClient()
   }, [])
+
+  const handleDelete = async id => {
+    const confirmed = confirm('¿Deseas eliminar este Cliente?')
+    if (confirmed) {
+      try {
+        const url = `http://localhost:3000/clients/${id}`
+        const response = await fetch(url, {
+          method: 'DELETE'
+        })
+        await response.json()
+        //Peor Performance de actualizar los registros del State.
+        //location.reload()
+        //Mejor Performance en tiempo real y sin modificar el array original.
+        const arrayClients = clients.filter( client => client.id !== id)
+        setClients(arrayClients)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
   
  
   return (
@@ -43,7 +63,7 @@ const Index = () => {
         
             <tbody>
               {clients.map( client => (
-                <Client key={client.id} client={client}/>
+                <Client key={client.id} client={client} handleDelete={handleDelete}/>
               ))}
             </tbody>
           </table>

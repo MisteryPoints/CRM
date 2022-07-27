@@ -13,8 +13,8 @@ const CheckClient = () => {
         setCharging(!charging)
         const getClient = async () => {
             try {
-                const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${id}`
-                // const url = `http://localhost:3000/clients/${id}`
+                // const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${id}`
+                const url = `http://localhost:3000/clients/${id}`
                 const response = await fetch(url)
                 const result = await response.json()
                 setClient(result)
@@ -28,7 +28,7 @@ const CheckClient = () => {
 
     return ( 
         <div>
-            {charging ? <Spinner/> : Object.keys(client).length !== {} ?  (
+            {charging ? <Spinner/> : Object.keys(client).length !== 0 ?  (
             <>
                 <h1 className='font-black text-4xl text-blue-900'>Ver Cliente: {client.name}</h1>
                 <p className='mt-3'>Información del cliente: </p>

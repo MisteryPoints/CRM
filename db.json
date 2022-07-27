@@ -1,14 +1,6 @@
 {
   "clients": [
     {
-      "name": "Victor Alfonso Tejada Bonilla",
-      "business": "Claro Dom",
-      "email": "misterypoint2@gmail.com",
-      "tel": "8097298392",
-      "notes": "Gracias!",
-      "id": 1
-    },
-    {
       "name": "Ani Luz Tejeda Roman",
       "business": "Claro Dom",
       "email": "aniluztejeda@gmail.com",
@@ -31,14 +23,6 @@
       "tel": "8091234569",
       "notes": "Buen servicio",
       "id": 4
-    },
-    {
-      "name": "Ruben Evertz",
-      "business": "Claro Dom",
-      "email": "rubenevertz@gmail.com",
-      "tel": "8097894563",
-      "notes": "Puede mejorar.",
-      "id": 5
     },
     {
       "name": "Oscar Foster",

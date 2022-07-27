@@ -14,8 +14,8 @@ const EditClient = () => {
       setCharging(true)
       const getClient = async () => {
           try {
-              const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${id}`
-              // const url = `http://localhost:3000/clients/${id}`
+              // const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${id}`
+              const url = `http://localhost:3000/clients/${id}`
               const response = await fetch(url)
               const result = await response.json()
               setClient(result)
@@ -30,12 +30,16 @@ const EditClient = () => {
 
   return (
     <>
-      <h1 className='font-black text-4xl text-blue-900'>Editar Cliente</h1>
-      <p className='mt-3'>Llena los siguientes campos para editar los datos del cliente</p>
-      
       {charging ?  <Spinner/> : (
         <>
-          {client?.name ? (<Forms client={client}/>) : (<p className='font-bold text-2xl text-red-600'>ID del Cliente no valido</p>)}
+          {client?.name ? (
+            <>
+              <h1 className='font-black text-4xl text-blue-900'>Editar Cliente</h1>
+              <p className='mt-3'>Llena los siguientes campos para editar los datos del cliente</p>
+              
+              <Forms client={client}/>
+            </>
+          ) : (<p className='font-bold text-2xl text-red-600'>ID del Cliente no valido</p>)}
         </>
       )}
     </>

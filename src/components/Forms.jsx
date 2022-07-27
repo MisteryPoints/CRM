@@ -19,16 +19,33 @@ const Forms = ({client}) => {
 
   const handleSubmit = async (values) => {
     try {
-      const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
-      // const url = 'http://localhost:3000/clients'
-      const response = await fetch(url,{
-        method: 'POST',
-        body: JSON.stringify(values),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      const result = await response.json()
+      let response
+      if (client.id) {
+        //Editar Registro
+
+        // const url = `https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients/${client.id}`
+        const url = `http://localhost:3000/clients/${client.id}`
+        response = await fetch(url,{
+          method: 'PUT',
+          body: JSON.stringify(values),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+      } else {
+        //Nuevo Registro
+
+        // const url = 'https://misterypoints-crm-pjq4r6qxp36jrx-3000.githubpreview.dev/clients'
+        const url = 'http://localhost:3000/clients'
+        response = await fetch(url,{
+          method: 'POST',
+          body: JSON.stringify(values),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+      }
+      await response.json()
       navigate('/client')
     } catch (error) {
       console.log(error)
